@@ -1,0 +1,17 @@
+Machines: 
+List all machines in the current workspace.
+
+assets (object[]) - Array of machine objects. The machine object has the following fields:
+id (string) - Machine ID
+name (string) - Machine name
+workspace_id (string) - The ID of the workspace that contains the machine
+asset_type (string) - The type of the machine (service, production, cabinet)
+status (string) - The status of the machine (idle, working)
+alarm (boolean) - The alarm status of the machine (true, false)
+devices (object[]) - Array of devices that are associated to the machine. The device object has the following fields:
+id (string) - Device ID
+name (string) - Device name
+account_id (string) - The ID of the account
+config (object) - The configuration of the device
+created_at (date) - Machine creation date in RFC3339 format
+created_at (date) - Machine creation date in RFC3339 format

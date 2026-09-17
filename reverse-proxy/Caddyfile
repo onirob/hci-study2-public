@@ -1,0 +1,13 @@
+:80 {
+    root * /srv
+    handle /api/* {
+        reverse_proxy api:8787
+    }
+    handle /chat/* {
+        reverse_proxy chatbot:8081
+    }
+    handle {
+        try_files {path} /index.html
+        file_server
+    }
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="HCI experiment logo">
+  <defs>
+    <style>
+      .navy { fill:#123A5A; }
+      .teal { fill:#19A7AE; }
+      .gold { fill:#F2BE22; }
+      .screen { fill:#FFFFFF; }
+      .bar1 { fill:#F0625D; }
+      .bar2 { fill:#2D9CDB; }
+      .bar3 { fill:#2AB17E; }
+
+      /* Strong halo so HCI stays readable when tiny */
+      .halo {
+        paint-order: stroke fill;
+        stroke:#FFFFFF;
+        stroke-width:18;   /* reduce to 14/12 if you prefer thinner */
+        stroke-linejoin:round;
+      }
+    </style>
+  </defs>
+
+  <!-- Rounded-corner safe area (optional) -->
+  <rect x="0" y="0" width="512" height="512" rx="96" ry="96" fill="#fff"/>
+
+  <!-- === Icons under text, centered low to leave room for huge HCI === -->
+  <g transform="translate(256,306)">
+    <!-- Dashboard (right) -->
+    <g transform="translate(86,32) scale(0.9)">
+      <rect x="-64" y="-68" width="160" height="116" rx="18" class="gold"/>
+      <rect x="-50" y="-54" width="132" height="88"  rx="10" class="screen"/>
+      <rect x="-30" y="16" width="20" height="18" class="bar1"/>
+      <rect x="-6"  y="2"  width="20" height="32" class="bar2"/>
+      <rect x="18"  y="-18" width="20" height="52" class="bar3"/>
+      <rect x="-6" y="56" width="40" height="12" class="gold"/>
+      <rect x="6"  y="68" width="14" height="18" class="gold"/>
+    </g>
+
+    <!-- Chat bubble (left) -->
+    <g transform="translate(-96,32) scale(0.95)">
+      <path class="teal" d="M -90,-40 h 140 a20,20 0 0 1 20,20 v 42 a20,20 0 0 1 -20,20 h -44 l -28,26 a6,6 0 0 1 -10,-4 v -22 h -58 a20,20 0 0 1 -20,-20 v -42 a20,20 0 0 1 20,-20 z"/>
+      <rect x="-72" y="-16" width="90" height="12" rx="6" class="screen"/>
+      <rect x="-72" y="10"  width="70" height="12" rx="6" class="screen"/>
+    </g>
+  </g>
+
+  <!-- === HUGE HCI, centered and overlapping icons === -->
+  <!-- The text baseline is lifted so letters sit over the icons -->
+  <text x="256" y="256"
+        text-anchor="middle"
+        font-family="Inter, Arial, Helvetica, sans-serif"
+        font-weight="900"
+        font-size="260"    
+        class="navy halo">HCI</text>
+</svg>

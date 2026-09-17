@@ -1,0 +1,45 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+# Never release participant records, operational exports or backup collections
+backups/
+analytics/
+analysis_data/
+exports/
+chats/
+data/
+logs/
+*.log
+*.dump
+*.backup
+*.sqlite
+*.sqlite3
+*.db
+*.parquet
+*.csv
+!/seed_data/decision_ground_truth.csv
+*.pkl
+!/seed_data/*.pkl
+*.pickle
+*.zip
+*.tar
+*.gz
+# Installed dependencies, generated files and local tools
+node_modules/
+dist/
+build/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.tsbuildinfo
+.idea/
+.vscode/
+.DS_Store
+*.local

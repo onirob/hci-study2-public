@@ -1,0 +1,17 @@
+# folders
+.promptflow/
+.venv/
+.zero/
+chats/
+.runs/
+.vscode/
+__pycache__/
+cache/
+exported_figures/
+exports/
+pandasai.log
+data/
+environment variables
+.env
+*.pkl
+zerynth_connector.log

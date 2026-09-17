@@ -1,0 +1,30 @@
+Productivity:
+productivity (object) The productivity object in the response. The productivity object has the following fields:
+assets (object[]) Array of machine objects. The machine object has the following fields:
+id (string) - The ID of the asset
+name (string) - The name of the asset
+asset_type (string) - The type of the asset (production_machine)
+status (string) - The status of the asset (idle, working)
+alarm_time (number) - The alarm time of the asset (in seconds)
+avg_cycle_time (number) - The average cycle time of the asset (in seconds)
+total_items (number) - The total items produced by the asset
+good_items (number) - The good items produced by the asset
+bad_items (number) - The bad items produced by the asset
+consumption (number) - The consumption of the asset in the specified time range (in kWh)
+cost (number) - The cost of the consumption of the asset in the specified time range
+availability (number) - The availability of the asset (proportion from 0 to 1)
+performance (number) - The performance of the asset (proportion from 0 to 1)
+quality (number) - The quality of the production processes (proportion from 0 to 1)
+oee (number) - The OEE of the asset, which is the product of the three factors above (proportion from 0 to 1)
+oee_timeline (object[]) - Array of OEE detail objects. The OEE detail object has the following fields:
+value (number) - The OEE value (proportion from 0 to 1)
+start (date) - The start timestamp of the OEE value in RFC3339 format
+end (date) - The end timestamp of the OEE value in RFC3339 format
+h_oee (object[]) - Array of OEE detail objects. The OEE detail object has the following fields:
+ts (date) - The timestamp of the OEE value in UNIX format
+value (number) - The OEE value (proportion from 0 to 1)
+h_pieces (object[]) - Array of pieces detail objects. The pieces detail object has the following fields:
+ts (date) - The timestamp of the pieces value in UNIX format
+value (object) - The pieces value object has the following fields:
+good (number) - The good pieces value
+bad (number) - The bad pieces value

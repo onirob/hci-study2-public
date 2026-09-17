@@ -1,0 +1,9 @@
+
+Consumption:
+- week_start: Beginning of the reporting week.
+- asset_id: the unique id of a machine/s.
+- Consumption (kWh): Total energy consumed by the machine/s.
+- Consumption in Idle State (kWh): Energy consumed while the machine/s is not in operation.
+- Consumption in Working State (kWh): Energy consumed while the machine/s is in operation.
+- Power (kW): Power usage of the machine/s at a given time.
+- Cost (€/kWh): Cost of energy consumption per kilowatt-hour for the machine/s.

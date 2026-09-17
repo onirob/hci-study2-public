@@ -1,0 +1,6 @@
+
+Alarms:
+- week_start: Beginning of the reporting week.
+- asset_id: the unique id of a machine/s.
+- Alarm Duration (s): The total duration of alarms recorded, measured in seconds.
+- Alarms (#): The total number of alarms triggered during a specific period.

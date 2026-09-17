@@ -1,0 +1,6 @@
+1. overall: 
+KPIs for all the factory (aggregates of all machines). It replies to questions like "What is the total consumption and production?"
+
+2. single_assets:
+KPIs for a single asset/machine. It replies to questions like "What is the consumption of the press 1?"
+

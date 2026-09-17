@@ -1,0 +1,124 @@
+name: hci-study2-public
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: hci_study
+      POSTGRES_USER: hci
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Generate POSTGRES_PASSWORD in .env}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./hci-study-api/app/sql/init.sql:/docker-entrypoint-initdb.d/00_init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hci -d hci_study -h 127.0.0.1"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  db-seed:
+    build: ./hci-study-api
+    image: hci-study2-public-api:local
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: hci_study
+      DB_USER: hci
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?Generate POSTGRES_PASSWORD in .env}
+      SEED_DATA_DIR: /seed_data
+    command: ["python", "app/seeders/seed_machines.py"]
+    volumes:
+      - ./seed_data:/seed_data:ro
+    restart: "no"
+
+  api:
+    build: ./hci-study-api
+    image: hci-study2-public-api:local
+    depends_on:
+      db-seed:
+        condition: service_completed_successfully
+    environment:
+      DATABASE_URL: postgresql://hci:${POSTGRES_PASSWORD:?Generate POSTGRES_PASSWORD in .env}@db:5432/hci_study
+      IP_HASH_SALT: ${IP_HASH_SALT:?Generate IP_HASH_SALT in .env}
+      STAGING: "true"
+      SESSION_MAX_MINUTES: "60"
+      ASSIGNMENT_BIASED_P: "0.8"
+      LITERACY_CUT1: "5"
+      LITERACY_CUT2: "6"
+      RFI_CUT1: "-0.33"
+      RFI_CUT2: "0.33"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8787 --workers 2
+
+  chatbot:
+    build: ./hci-study-chatbot-api
+    depends_on:
+      api:
+        condition: service_started
+    environment:
+      STUDY_API_BASE_URL: http://api:8787/api
+      AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT:-}
+      AZURE_OPENAI_API_KEY: ${AZURE_OPENAI_API_KEY:-}
+      AZURE_OPENAI_DEPLOYMENT: ${AZURE_OPENAI_DEPLOYMENT:-gpt-4o}
+      AZURE_OPENAI_API_VERSION: ${AZURE_OPENAI_API_VERSION:-2024-08-01-preview}
+      COMPANY_PREFIX: ""
+      JOB_PROFILE: other
+      WORKSPACE_ID: public-scenario
+      SCENARIO_TODAY: "2025-11-05"
+      SCENARIO_TIME: "11:30:00"
+      CHAT_REQUEST_TIMEOUT: "60"
+    # Bot registries are process-local: use one worker for local exploration.
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8081 --workers 1
+
+  proxy:
+    build:
+      context: .
+      dockerfile: reverse-proxy/Dockerfile
+      args:
+        VITE_API_BASE: /api
+        VITE_CHAT_BASE: /chat
+        VITE_ALLOW_FAKE_PROLIFIC: "true"
+        VITE_ENABLE_EXTERNAL_ACTIONS: ${VITE_ENABLE_EXTERNAL_ACTIONS:-false}
+        VITE_SUPPORT_EMAIL: ${VITE_SUPPORT_EMAIL:-}
+        VITE_PROLIFIC_COMPLETED_CODE: ${VITE_PROLIFIC_COMPLETED_CODE:-}
+        VITE_PROLIFIC_ATTENTION_FAILED_CODE: ${VITE_PROLIFIC_ATTENTION_FAILED_CODE:-}
+        VITE_PROLIFIC_COMPREHENSION_FAILED_CODE: ${VITE_PROLIFIC_COMPREHENSION_FAILED_CODE:-}
+        VITE_PROLIFIC_PRESCREEN_EXCLUDED_CODE: ${VITE_PROLIFIC_PRESCREEN_EXCLUDED_CODE:-}
+        VITE_PROLIFIC_REJECTED_CODE: ${VITE_PROLIFIC_REJECTED_CODE:-}
+        VITE_PROLIFIC_SESSION_ISSUE_CODE: ${VITE_PROLIFIC_SESSION_ISSUE_CODE:-}
+    ports:
+      - "127.0.0.1:${LOCAL_PORT:-8080}:80"
+    depends_on:
+      - api
+      - chatbot
+
+  db-backup:
+    profiles: ["backup"]
+    build: ./services/db-backup
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PGHOST: db
+      PGPORT: "5432"
+      PGUSER: hci
+      PGPASSWORD: ${POSTGRES_PASSWORD:?Generate POSTGRES_PASSWORD in .env}
+      PGDATABASE: hci_study
+      BACKUP_DIR: /backups
+      CRON: "0 */3 * * *"
+      JOBS: "1"
+      RETENTION_HOURS: "168"
+      DUMP_GLOBALS: "false"
+      READABLE: "true"
+      EXCLUDE_TABLE_DATA: public.machines,public.machine_timeseries
+      ANALYTICS: "true"
+      ANALYTICS_FORMAT: parquet
+      ANALYTICS_DIR: /backups/analytics
+      ANALYTICS_WINDOW_HOURS: "720"
+      ANALYTICS_STRIP_CONTENT: "false"
+    volumes:
+      - ./backups:/backups
+
+volumes:
+  db_data:

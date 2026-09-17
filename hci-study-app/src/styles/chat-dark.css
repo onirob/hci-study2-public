@@ -1,0 +1,33 @@
+/* Scope overrides to a wrapper class so we don't affect other pages */
+.chat-dark .cs-main-container,
+.chat-dark .cs-chat-container,
+.chat-dark .cs-message-list {
+  background: transparent !important;
+}
+
+.chat-dark .cs-message-input,
+.chat-dark .cs-message-input__content-editor-wrapper {
+  background: #1e1e1e !important;
+}
+
+.chat-dark .cs-message-input__content-editor {
+  color: #e0e0e0 !important;
+}
+
+.chat-dark .cs-typing-indicator {
+  background: transparent !important;
+  color: #e0e0e0 !important;
+}
+
+/* Bubbles */
+.chat-dark .cs-message.cs-message--incoming .cs-message__content {
+  background: #2a2a2a !important;
+  color: #e0e0e0 !important;
+}
+.chat-dark .cs-message.cs-message--outgoing .cs-message__content {
+  background: #1976d2 !important; /* MUI primary[700] works well on dark */
+  color: #ffffff !important;
+}
+
+/* Scrollbar (optional) */
+.chat-dark .cs-message-list ::-webkit-scrollbar-thumb { background: #3a3a3a; }

@@ -1,0 +1,77 @@
+{% macro time_kpis() %}
+Time-related KPIs ('time'):
+   - working_time (seconds)
+   - idle_time (seconds)
+   - offline_time (seconds)
+   - alarm_time (seconds)
+   - utilization_rate (%)
+{% endmacro %}
+{% macro energy_and_cost_kpis() %}
+Energy and Cost-related KPIs ('energy_and_cost'):
+   - consumption (kWh)
+   - power (kW)
+   - cost (euro)
+   - consumption_working (kWh)
+   - consumption_idle (kWh)
+{% endmacro %}
+{% macro production_kpis() %}
+Production-related KPIs ('production'):
+   - cycles (#)
+   - good_cycles (#)
+   - bad_cycles (#)
+   - average_cycle_time (seconds)
+   - average_cycle_cost (euros)
+{% endmacro %}
+{% macro efficiency_kpis() %}
+Efficiency-related KPIs ('efficiency'):
+   - availability (%)
+   - performance (%)
+   - quality (%)
+   - oee (%)
+{% endmacro %}
+{% macro status_kpis() %}
+Machines status ('status'):
+   - list of connected machines
+   - machines current status: working or idle
+   - machines current alarm status
+{% endmacro %}
+{% macro maintenance_kpis() %}
+Maintenance ('maintenance'):
+   - machine health and condition
+   - next maintenance
+   - previous maintenance
+{% endmacro %}
+{% if reading_instructions %}
+dataframe, each KPI tracked over timeframes, like 'day' or 'previous_week'. 'trend' keys, 'trend_avg', offer insights into KPIs changing over time.
+understand them:
+Timeframes:, understand timeframe indicated (like 'day' or 'previous_week'). tells period analyzed, single day or week, month in past.
+Comparisons: 'trend' keys, like 'trend_avg', provide comparisons relative to timeframe. if 'trend_avg' time granularity daily, compares data from previous day. If aggregate of data, compares data from previous analogous timeframe.
+'trend' keys, comparing current period to corresponding period past, based on timeframe indicated.
+{% endif %}
+The following list describes the KPIs and their respective units of measure.
+{% if interest_type == 'all' %}
+   {{ time_kpis() }}
+   {{ energy_and_cost_kpis() }}
+   {{ production_kpis() }}
+   {{ efficiency_kpis() }}
+   {{ status_kpis() }}
+{% elif interest_type == 'historical' %}
+   {{ time_kpis() }}
+   {{ energy_and_cost_kpis() }}
+   {{ production_kpis() }}
+   {{ efficiency_kpis() }}
+{% elif interest_type == 'time' %}
+   {{ time_kpis() }}
+{% elif interest_type == 'energy_and_cost' %}
+   {{ energy_and_cost_kpis() }}
+{% elif interest_type == 'production' %}
+   {{ production_kpis() }}
+{% elif interest_type == 'efficiency' %}
+   {{ efficiency_kpis() }}
+{% elif interest_type == 'status' %}
+   {{ status_kpis() }}
+{% elif interest_type == 'maintenances' %}
+   {{ maintenance_kpis() }}
+{% else %}
+Unknown interest type. Please provide a valid interest type.
+{% endif %}

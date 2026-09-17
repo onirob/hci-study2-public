@@ -1,0 +1,14 @@
+Maintenances:
+status (object[]) Array of status objects in the response. The status object has the following fields:
+asset_id (string) - The ID of the asset
+asset_name (string) - The name of the asset
+asset_type (string) - The type of the asset (service_machine, production_machine, cabinet)
+periodic_maintenance_time (number) - The periodic maintenance time of the asset (in seconds)
+working_time_target (number) - The working time target of the asset (in seconds)
+working_time (number) - The working time of the asset (in seconds)
+last_maintenance (date) - The last maintenance timestamp of the asset in RFC3339 format
+working_time_maintenance_condition (number) - The working time maintenance condition of the asset (in percentage)
+periodic_time_maintenance_condition (number) - The periodic time maintenance condition of the asset (in percentage)
+working_time_left (number) - The working time left of the asset (in seconds)
+periodic_time_left (number) - The periodic time left of the asset (in seconds)
+next_maintenance_date (date) - The next scheduled maintenance date of the asset in RFC3339 format

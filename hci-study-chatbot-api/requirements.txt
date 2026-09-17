@@ -1,0 +1,20 @@
+# other app dependencies
+ipykernel
+pandas
+requests
+httpx
+python-dotenv
+pytz
+tiktoken
+fastapi
+uvicorn
+jinja2
+
+
+# OpenAI
+openai
+
+
+#Service
+filelock>=3.12.0
+numpy==1.26.4

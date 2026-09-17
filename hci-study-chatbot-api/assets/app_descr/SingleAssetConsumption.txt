@@ -1,0 +1,26 @@
+Consumption:
+consumption (object) The consumption object in the response. The consumption object has the following fields:
+power (number) - The current power of all the machines in the current workspace (in kW)
+consumption (number) - The consumption of all the machines in the specified time range (in kWh)
+d_consumption (number) - The delta consumption of the machines between the specified time range and the previous one (in percentage)
+h_consumption (object[]) - Array of consumption detail objects. The consumption object has the following fields:
+ts (date) - The timestamp of the consumption value in RFC3339 format
+value (number) - The power value (in kW)
+cost (number) - The cost of the consumption based on the currency set in the settings of the workspace
+d_cost (number) - The delta cost between the current time range and the previous one (in percentage)
+h_cost (object[]) - Array of cost objects. The cost object has the following fields:
+ts (date) - The timestamp of the cost recording in RFC3339 format
+value (number) - The cost
+type_contributions (object[]) - The type contribution object has the following fields:
+key (string) - Machine type
+value (number) - Cost contribution of the machine type
+assets (object[]) - Array of machine objects. The machine object has the following fields:
+id (string) - The ID of the asset
+name (string) - The name of the asset
+asset_type (string) - The type of the asset (service_machine, production_machine, cabinet)
+status (string) - The status of the asset (idle, working)
+alarm (boolean) - The alarm status of the asset (true, false)
+power (number) - The current power of the asset (in kW)
+consumption (number) - The consumption of the asset in the specified time range (in kWh)
+cost (number) - The cost of the consumption of the asset in the specified time range
+d_cost (number) - The delta cost of the asset between the specified time range and the previous one (in percentage)

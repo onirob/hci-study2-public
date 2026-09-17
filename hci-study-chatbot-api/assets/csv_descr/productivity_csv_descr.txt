@@ -1,0 +1,16 @@
+
+Productivity:
+- week_start: Beginning of the reporting week.
+- asset_id: the unique id of a machine.
+- Actual Cicle Time (s): the actual cycle time in seconds. 
+- Ideal Cicle Time (s): the ideal cycle time in seconds.
+- Availability (%): Percentage of time the machine was available for production.
+- Performance (%): Efficiency of the machine during production compared to its ideal cycle time.
+- Quality (%): Percentage of good pieces produced compared to total pieces produced.
+- Overall Equipment Efficiency (%): the overall equipment efficiency of the machine/s.
+- Good pieces (#): how many good pieces have been produced.
+- Bad pieces (#): how many bad pieces have been produced.
+- Fully Productive Time (s): Total time machine spent operating at maximum capacity producing good pieces.
+- Planned Production Time (s):  Total scheduled production time including downtime for maintenance and setup.
+- Net Run Time (s): Actual operating time after accounting for planned and unplanned downtime.
+- Run Time (s):  Total time machine was in operation, regardless of productivity or downtime.

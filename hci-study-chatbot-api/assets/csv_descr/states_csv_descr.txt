@@ -1,0 +1,6 @@
+
+States:
+- week_start: Beginning of the reporting week.
+- asset_id: the unique id of a machine/s.
+- Idle Duration (h): Duration of time when the machine was idle or not in operation. Mean is the average of those durations.
+- Working Duration (h): Duration of time when the machine was actively working or in operation. Mean is the average of those durations.

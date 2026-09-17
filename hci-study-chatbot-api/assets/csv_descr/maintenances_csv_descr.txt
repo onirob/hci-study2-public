@@ -1,0 +1,7 @@
+
+Maintenances:
+- week_start: Beginning of the reporting week.
+- asset_id: the unique id of a machine/s.
+- notes: Additional information or comments regarding the maintenance event.
+- operator: Identifier of the operator associated with the event.
+- maintenance_done: Indicates whether maintenance was performed.
