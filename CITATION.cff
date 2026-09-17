@@ -1,0 +1,52 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the software and the associated article described in preferred-citation."
+
+title: "Experimental Platform - LLM-Based Conversational vs Graphical Decision Support"
+type: software
+
+# Software authors should reflect contributions to the repository/software itself,
+# independently of article authorship.
+authors:
+  - family-names: "Figliè"
+    given-names: "Roberto"
+  - family-names: "Caputo"
+    given-names: "Simone"
+
+
+abstract: >-
+  Research platform accompanying Figliè et al. (2026), "Neither Replacement nor
+  Panacea: Comparing LLM-Based Conversational and Graphical Decision Support in
+  Industrial Tasks". It implements the dashboard and conversational conditions,
+  shared industrial scenario, study flow, questionnaires, task scoring, and event
+  logging used for the study. The repository contains synthetic scenario data and
+  experimental materials, but no participant records or original deployment
+  credentials.
+
+keywords:
+  - human-computer interaction
+  - decision support
+  - large language models
+  - conversational user interfaces
+  - dashboards
+  - Industry 4.0
+  - experimental platform
+
+preferred-citation:
+  type: article
+  title: "Neither Replacement nor Panacea: Comparing LLM-Based Conversational and Graphical Decision Support in Industrial Tasks"
+  authors:
+    - family-names: "Figliè"
+      given-names: "Roberto"
+    - family-names: "Caputo"
+      given-names: "Simone"
+    - family-names: "Serrano"
+      given-names: "Alan"
+    - family-names: "Mikhaylova"
+      given-names: "Daria"
+    - family-names: "Turchi"
+      given-names: "Tommaso"
+    - family-names: "Mazzei"
+      given-names: "Daniele"
+  year: 2026
+  doi: "10.48550/arXiv.2605.31287"
+  url: "https://arxiv.org/abs/2605.31287"
