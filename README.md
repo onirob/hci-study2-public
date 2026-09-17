@@ -1,4 +1,4 @@
-# What Is This Repository
+# Experimental Platform
 
 Research platform accompanying Figliè et al. (2026), *Neither Replacement nor Panacea: Comparing LLM-Based Conversational and Graphical Decision Support in Industrial Tasks*. It implements the dashboard and conversational conditions, shared industrial scenario, study flow, questionnaires, task scoring, and event logging, used for the study.
 
